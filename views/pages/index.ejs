@@ -5,14 +5,6 @@
 </head>
 
 <body>
-<script src="../../node_modules/socket.io/lib/socket.io.js"></script>
-<script>
-  var socket = io.connect('https://dayofcodenumber19.herokuapp.com/');
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
 <button onClick="console.log(this.value)" value="Левая"> Левая </button>
 <button onClick="console.log(this.value)" value="Правая"> Правая </button>
 
