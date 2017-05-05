@@ -1,18 +1,17 @@
-var express = require('express');
-var app = express();
-var url = require('url');
-app.set('port', (process.env.PORT || 5000));
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var port = process.env.PORT || 5000;
 
 app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  var pathname = url.parse(req.url, true); 
-  res.end(urlParsed.query.massage);
-  response.render('pages/index');
-  
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
 });
 
 app.listen(app.get('port'), function() {
